@@ -3,9 +3,8 @@
     /**
     *   Author: Dan Martensen
     *
-    *   Simple example of k-ary tree with insertChild(), insertSibling(),
-    *   and removeChild() operations, along with set and remove parent
-    *   references if needed.
+    *   K-ary tree with insertChild(), insertSibling(), and removeChild() operations, 
+    *   along with set and remove parent references if needed.
     *
     *   Each operation does a Breadth First Search thru the tree iteratively
     *   with O(n) time complexity.
@@ -19,14 +18,16 @@
     var Tree = (function() {
 
         /**
-        *   Single node is created thru a factory function instead instance 
+        *   @function Node
+        *
+        *   Single node is created thru a factory function instead instance
         *   object so it's less vulnerable to instance (this) manipulations.
         *
-        *   @param data - data string value to be stored in node
-        *   @param parent - reference to parent node
-        *   @param children - array of child nodes
-        *   @returns node - new node with data, parent, and children properties
-        *                   or null if parameters don't meet type checking
+        *   @param {string} data - data value to be stored in node
+        *   @param {Object} parent - reference to parent node
+        *   @param {Array} children - list of child nodes
+        *   @returns {Object} node - new node with data, parent, and children 
+        *                   properties or null if parameters don't meet type checking
         */
         function Node(data, parent, children) {
 
@@ -34,6 +35,7 @@
 
             // type check parameters
             if(Object.prototype.toString.call(data) === '[object String]' &&
+                parent instanceof Object &&
                 Array.isArray(children)) {
 
                 node = {
@@ -73,8 +75,8 @@
         *   This ensures the sibling is added immediately following the node (target) 
         *   that invoked the operation.  
         *
-        *   @param target - node that invoked the operation (e.g Button click event)
-        *   @returns completed - boolean indicates if operation was successful.
+        *   @param {Object} target - node that invoked the operation (e.g Button click event)
+        *   @returns {boolean} completed - boolean indicates if operation was successful.
         */
         function insertSiblingNode(target) {
             var queue = [], completed = false, node = null, i;
@@ -113,8 +115,8 @@
         *   If so, the node is target so insert in the node into it's child array 
         *   via push().  Returns true
         *
-        *   @param target - node that invoked the operation (e.g Button click event)
-        *   @returns completed - boolean indicates if operation was successful.
+        *   @param {Object} target - node that invoked the operation (e.g Button click event)
+        *   @returns {boolean} completed - boolean indicates if operation was successful.
         */
         function insertChildNode(target) {
             var queue = [], completed = false, node = null, i;
@@ -150,8 +152,8 @@
         *   node's child checks if target node matches node's child references.
         *   If so, the node is parent so remove the node via splice().
         *
-        *   @param target - node that invoked the operation (e.g Button click event)
-        *   @returns completed - boolean indicates if operation was successful.
+        *   @param {Object} target - node that invoked the operation (e.g Button click event)
+        *   @returns {boolean} completed - boolean indicates if operation was successful.
         */
         function removeNode(target) {
             var queue = [],
@@ -236,8 +238,16 @@
         *   JavaScript API providing get and set functions via
         *   object literal.
         *
-        *   This could easily be replaced with event handlers
-        *   to elements that represent nodes.
+        *   When integrated with a UI, these can be easily replaced with
+        *   event handlers bound to HTML elements that represent nodes.
+        *
+        *   Angular markup:
+        *   <div ng-click="insertChild(node)">...</div>
+        *
+        *   Event handler
+        *   $scope.insertChild(node) {
+        *       ...
+        *   }
         */
         return {
             getRoot: function() {
@@ -256,7 +266,7 @@
 
     })();
 
-    // TEST
+    //  TESTS
     var root = Tree.getRoot();
 
     Tree.insertChild(root);
@@ -267,7 +277,5 @@
     Tree.insertChild(root.children[0]);
 
     Tree.remove(root.children[1]);
-
-    console.log(root);
 
 })();
