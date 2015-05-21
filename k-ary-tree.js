@@ -25,14 +25,18 @@
         *   @param data - data string value to be stored in node
         *   @param parent - reference to parent node
         *   @param children - array of child nodes
+        *   @returns node - new node with data, parent, and children properties
+        *                   or null if parameters don't meet type checking
         */
         function Node(data, parent, children) {
+
+            var node = null;
 
             // type check parameters
             if(Object.prototype.toString.call(data) === '[object String]' &&
                 Array.isArray(children)) {
 
-                return {
+                node = {
                     data: data,
                     parent: parent,
                     children: children
@@ -41,6 +45,8 @@
             } else {
                 console.log('Invalid data');
             }
+
+            return node;
         }
 
         /**
