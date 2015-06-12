@@ -1,21 +1,23 @@
-(function() {
-    'use strict';
-    /**
-    *   Author: Dan Martensen
-    *
-    *   K-ary tree with insertChild(), insertSibling(), and removeChild() operations, 
-    *   along with set and remove parent references if needed.
-    *
-    *   Each operation does a Breadth First Search thru the tree iteratively
-    *   with O(n) time complexity.
-    *
-    *   Could easily be integrated into an Angular Model layer of a UI, enabling 
-    *   click events to call these functions which act on the tree data structure.  
-    *   Each node has a data property and array of children nodes.  This could 
-    *   be scaled to more properties, based on UI needs such as image paths, urls, 
-    *   numbers, and more.
-    */
-    var Tree = (function() {
+
+/**
+*   Author: Dan Martensen
+*
+*   A K-ary tree has n-children per node and n-levels.  Functions provided are
+*   insertChild(), insertSibling(), and removeChild() operations, along with
+*   set and remove parent references if needed.
+*
+*   Each operation does a Breadth First Search thru the tree iteratively
+*   with O(n) time complexity.
+*
+*   Could easily be integrated into an Angular Model layer of a UI, enabling 
+*   click events to call these functions which act on the tree data structure.  
+*   Each node has a data property and array of children nodes.  This could 
+*   be scaled to more properties, based on UI needs such as image paths, urls, 
+*   numbers, and more.
+*/
+angular.module('selection').factory('TreeFactory',
+    function() {
+        'use strict';
 
         /**
         *   @function Node
@@ -30,7 +32,6 @@
         *                   properties or null if parameters don't meet type checking
         */
         function Node(data, parent, children) {
-
             var node = null;
 
             // type check parameters
@@ -237,21 +238,13 @@
         /**
         *   JavaScript API providing get and set functions via
         *   object literal.
-        *
-        *   When integrated with a UI, these can be easily replaced with
-        *   event handlers bound to HTML elements that represent nodes.
-        *
-        *   Angular markup:
-        *   <div ng-click="insertChild(node)">...</div>
-        *
-        *   Event handler
-        *   $scope.insertChild(node) {
-        *       ...
-        *   }
         */
         return {
-            getRoot: function() {
-                return _rootNode;
+            setParentReferences: function() {
+                return setParentReferences();
+            },
+            removeParentReferences: function() {
+                return removeParentReferences();
             },
             insertChild: function(node) {
                 return insertChildNode(node);
@@ -264,18 +257,6 @@
             }
         };
 
-    })();
+    }
 
-    //  TESTS
-    var root = Tree.getRoot();
-
-    Tree.insertChild(root);
-    Tree.insertChild(root);
-    Tree.insertSibling(root.children[0]);
-
-    Tree.insertChild(root.children[0]);
-    Tree.insertChild(root.children[0]);
-
-    Tree.remove(root.children[1]);
-
-})();
+);

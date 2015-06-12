@@ -1,0 +1,6 @@
+<div class="item-container--inactive">
+    <div ng-if="$index===0" class="fap-field fap-field-top"><span class="fap-field--header">Slide</span><input ng-model="node.parent.prompt" class="node-input-wide"></div>
+    <div class="fap-field"><span class="fap-field--header">Button Text</span><input ng-model="node.buttonText" class="node-input-wide"></div>
+    <div class="fap-field"><span class="fap-field--header">Image URL</span><input ng-model="node.imageURL" class="node-input-wide"></div>
+    <div class="fap-field" ng-class="{'invisible':isNonLeafNode(node)}"><span class="fap-field--header">Button URL</span><input ng-model="node.link" class="node-input-wide"></div>
+</div>

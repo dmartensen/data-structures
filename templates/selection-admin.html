@@ -1,0 +1,11 @@
+
+<div template-frag ng-repeat="node in nodeList" ng-click="selectNode($event, node)" class="no-indent">
+    <div template-frag ng-repeat="node in node.children" ng-click="selectNode($event, node)" class="indent">
+        <div template-frag ng-repeat="node in node.children" ng-click="selectNode($event, node)" class="indent">
+            <div template-frag ng-repeat="node in node.children" ng-click="selectNode($event, node)" class="indent"></div>
+        </div>
+    </div>
+</div>
+
+<button class="fap-save-button" ng-click="saveSettings()">Save Settings</buttons>
+

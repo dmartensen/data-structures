@@ -1,0 +1,29 @@
+
+<div class="item-rotator">
+	<!-- 3 col -->
+	<div ng-repeat="item in itemsList3Col" ng-class="[item.animClass, item.animTrans]" class="item col-3">
+		<a ng-href="{{item.itemUrl}}" class="item-url">
+			<div ng-if="item.rating" class="item__rating">{{item.rating}}</div>
+			<div class="item__image-container">
+				<img class="item__image" ng-src="{{item.imageUrl}}">
+				<div class="item__image--vertical-align"></div>
+			</div>
+		</a>
+	</div>
+	<!-- 2 col -->
+	<div ng-repeat="item in itemsList2Col" ng-class="[item.animClass, item.animTrans]" class="item col-2" ng-swipe-right="rotatorPrevClick()" ng-swipe-left="rotatorNextClick()">
+		<a ng-href="{{item.itemUrl}}" class="item-url">
+			<div ng-if="item.rating" class="item__rating">{{item.rating}}</div>
+			<div class="item__image-container">
+				<img class="item__image" ng-src="{{item.imageUrl}}">
+				<div class="item__image--vertical-align"></div>
+			</div>
+			
+		</a>
+	</div>
+</div>
+<div ng-if="itemsList3Col.length > 3" class="rotator__prev-button" ng-click="rotatorPrevClick()"></div>
+<div ng-if="itemsList3Col.length > 3" class="rotator__next-button" ng-click="rotatorNextClick()"></div>
+<div class="item-rotator__circles">
+	<a ng-repeat="ord in itemsList3Col" ng-if="$index % 3 === 0" ng-class="{'active': isCurrentSlideIndex($index)}" class="item-rotator__circle"></a>
+</div>
