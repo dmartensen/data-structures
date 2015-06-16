@@ -11,7 +11,7 @@
 *
 *   Could easily be integrated into an Angular Model layer of a UI, enabling 
 *   click events to call these functions which act on the tree data structure.  
-*   Each node has a data property and array of children nodes.  This could 
+*   Each node has a data property and array of children nodes.  The Node could 
 *   be scaled to more properties, based on UI needs such as image paths, urls, 
 *   numbers, and more.
 */

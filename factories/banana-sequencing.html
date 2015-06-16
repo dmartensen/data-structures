@@ -1,0 +1,19 @@
+<div class="featured-guavas-backend">
+	<!-- bananas -->
+    <div class="drop-down-container">
+        <select ng-model="bananaSelected"
+        		ng-options="option.name for option in bananaOptionList" 
+        		ng-change="bananaChange(bananaSelected.id)"
+        		class="drop-down">
+        </select>
+    </div>
+
+    <!-- guavas -->
+    <div class="drop-down-container">
+        <select ng-model="guavaSelected"
+        		ng-options="option.name for option in guavaOptionList" 
+        		ng-change="guavaChange(guavaSelected.id)"
+        		class="drop-down">
+        </select>
+    </div>
+</div>

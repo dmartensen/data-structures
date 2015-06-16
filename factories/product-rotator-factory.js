@@ -1,6 +1,6 @@
 
            
-            function ProductRotatorFactory(slidesArray, numCols) {
+            function RotatorFactory(slidesArray, numCols) {
 
                 var currentSlide = 0,
                     clickable = true;
